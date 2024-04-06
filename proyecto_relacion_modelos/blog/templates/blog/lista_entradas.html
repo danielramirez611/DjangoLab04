@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Lista de Entradas</title>
+    <!-- Agregar Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .card-title {
+            color: #343a40;
+            font-weight: bold;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        .card:hover .card-title {
+            color: #007bff;
+        }
+        .card-text {
+            color: #6c757d;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .card-footer {
+            background-color: transparent;
+            border-top: none;
+            padding: 20px 30px;
+            border-radius: 0 0 15px 15px;
+        }
+        .card-footer p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Lista de Entradas</h1>
+        <div class="row">
+            {% for entrada in entradas %}
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ entrada.titulo }}</h2>
+                            <p class="card-text">{{ entrada.contenido }}</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <p class="mb-1"><strong>Autor:</strong> <a href="{% url 'entradas_por_autor' entrada.autor.id %}">{{ entrada.autor }}</a></p>
+                            <p class="mb-0"><strong>Fecha de Publicación:</strong> {{ entrada.fecha_publicacion }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Agregar Bootstrap JS (opcional, solo si necesitas funcionalidades de Bootstrap que requieren JavaScript) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
